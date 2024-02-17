@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -22,18 +24,19 @@ class IProductApiService extends ProductApiService {
   Future<Either<ErrorResponse, List<ProductResponse>>> getAllProducts() async {
     try {
       var headers = {'Accept': 'application/json'};
-      Response response = await client.get(
-          ApiEndpoints.postsUrl,
+      Response response = await client.get(ApiEndpoints.postsUrl,
           options: Options(headers: headers));
-      var result = ProductResponse.fromJson(response.data);
-      return right([result]);
+      var result = List<ProductResponse>.from(
+          response.data.map((x) => ProductResponse.fromJson(x)));
+      return right(result);
     } on DioException catch (e) {
       return left(checkResponseError(e));
     }
   }
 
   @override
-  Future<Either<ErrorResponse, ProductResponse>> getProductDetails({required int postId}) async {
+  Future<Either<ErrorResponse, ProductResponse>> getProductDetails(
+      {required int postId}) async {
     try {
       var headers = {'Accept': 'application/json'};
       Response response = await client.get(

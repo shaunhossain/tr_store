@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tr_store/domain/product_response/product_response.dart';
 import 'package:tr_store/presentation/navigation/page_name.dart';
 import 'package:tr_store/presentation/ui/pages/cart_page.dart';
 import 'package:tr_store/presentation/ui/pages/product_details_page.dart';
@@ -12,7 +13,7 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
 final GoRouter router = GoRouter(
   navigatorKey: _rootNavigatorKey,
-  initialLocation: PagesName.splashPage.path,
+  initialLocation: PagesName.productPage.path,
   routes: [
     GoRoute(
       parentNavigatorKey: _rootNavigatorKey,
@@ -32,7 +33,8 @@ final GoRouter router = GoRouter(
       parentNavigatorKey: _rootNavigatorKey,
       path: PagesName.productDetailsPage.path,
       builder: (BuildContext context, GoRouterState state) {
-        return const ProductDetailsPage();
+        final product = state.extra as ProductResponse;
+        return ProductDetailsPage(productResponse: product,);
       },
     ),
     GoRoute(

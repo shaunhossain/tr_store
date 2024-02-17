@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 class ApiEndpoints {
   /// auth endpoint
   static const String baseUrl = "https://jsonplaceholder.org";
-  static const String postsUrl = "/posts/1";
+  static const String postsUrl = "/posts";
 
   static postDetailsUrl({required int postId}) =>
       "/posts/$postId";

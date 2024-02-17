@@ -15,7 +15,26 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   final ProductRepository repository;
   ProductBloc(this.repository) : super(const ProductState()) {
     on<ProductEvent>((event, emit) async {
+      await event.map(productList: (_ProductList req) async {
+        emit(state.copyWith(status: ProductStatus.loading));
 
+        final result = await repository.getAllProducts();
+
+        result.fold(
+              (l) => emit(
+            state.copyWith(
+              errorResponse: l,
+              status: ProductStatus.error,
+            ),
+          ),
+              (r) => emit(
+            state.copyWith(
+              listOfProducts: r,
+              status: ProductStatus.success,
+            ),
+          ),
+        );
+      });
     });
   }
 }

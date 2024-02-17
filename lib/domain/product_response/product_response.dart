@@ -1,7 +1,14 @@
+import 'dart:convert';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'product_response.freezed.dart';
 part 'product_response.g.dart';
+
+List<ProductResponse> productResponseFromMap(String str) => List<ProductResponse>.from(json.decode(str).map((x) => ProductResponse.fromJson(x)));
+
+String productResponseToMap(List<ProductResponse> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
 
 @freezed
 class ProductResponse with _$ProductResponse {
