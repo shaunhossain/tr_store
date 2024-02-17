@@ -10,6 +10,7 @@ enum LightModeColor{
   button(Color(0xff23A784)),
   error(Color(0xFFFF5733)),
   grey(Color(0xF0575555)),
+  border(Color(0xFFBDBDBD)),
   white(Color(0xffffffff));
 
   const LightModeColor(this.color);
@@ -25,6 +26,7 @@ enum DarkModeColor{
   button(Color(0xff23A784)),
   error(Color(0xFFFF5733)),
   grey(Color(0xF0575555)),
+  border(Color(0xFFBDBDBD)),
   white(Color(0xffffffff));
 
   const DarkModeColor(this.color);
