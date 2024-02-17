@@ -17,11 +17,28 @@ class ProductDetailsPage extends StatefulWidget {
 }
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
+  int productCount = 1;
   @override
   void initState() {
     context.read<ProductDetailsBloc>().add(
         ProductDetailsEvent.getProductInfo(postId: widget.productResponse.id!));
     super.initState();
+  }
+
+  void add() {
+    setState(() {
+      if (productCount < 10) {
+        productCount = productCount + 1;
+      }
+    });
+  }
+
+  void remove() {
+    setState(() {
+      if (productCount > 1) {
+        productCount = productCount - 1;
+      }
+    });
   }
 
   @override
@@ -127,14 +144,14 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         child: Row(
                           children: [
                             IconButton(
-                                onPressed: () {},
+                                onPressed: remove,
                                 icon: const Icon(Icons.remove)),
                             Text(
-                              "1",
+                              "$productCount",
                               style: ibmPlexSansH6Style(Colors.black),
                             ),
                             IconButton(
-                                onPressed: () {}, icon: const Icon(Icons.add)),
+                                onPressed: add, icon: const Icon(Icons.add)),
                           ],
                         ),
                       ),

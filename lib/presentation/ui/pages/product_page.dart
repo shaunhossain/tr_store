@@ -1,8 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tr_store/core/styles.dart';
 import 'package:tr_store/presentation/bloc/product_bloc/product_bloc.dart';
 import 'package:tr_store/presentation/navigation/page_name.dart';
 import 'package:tr_store/presentation/ui/widgets/loading_indicator.dart';
