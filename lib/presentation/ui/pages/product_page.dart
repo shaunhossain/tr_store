@@ -1,9 +1,7 @@
-import 'package:drift/drift.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tr_store/data/database/helper/product_table_helper.dart';
-import 'package:tr_store/data/database/product_database.dart';
+import 'package:tr_store/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:tr_store/presentation/bloc/product_bloc/product_bloc.dart';
 import 'package:tr_store/presentation/navigation/page_name.dart';
 import 'package:tr_store/presentation/ui/widgets/loading_indicator.dart';
@@ -62,21 +60,7 @@ class _ProductPageState extends State<ProductPage> {
                       slug: state.listOfProducts?[index].slug ?? "",
                       id: "${state.listOfProducts?[index].id ?? ""}",
                       addCart: () {
-                        var product = ProductCompanion.insert(
-                          id: Value(state.listOfProducts?[index].id ?? 0),
-                          slug: Value(state.listOfProducts?[index].slug),
-                          title: Value(state.listOfProducts?[index].title),
-                          content: Value(state.listOfProducts?[index].content),
-                          image: Value(state.listOfProducts?[index].image),
-                          thumbnail: Value(state.listOfProducts?[index].thumbnail),
-                          status: Value(state.listOfProducts?[index].status),
-                          category: Value(state.listOfProducts?[index].category),
-                          publishedAt: Value(state.listOfProducts?[index].publishedAt),
-                          updatedAt: Value(state.listOfProducts?[index].updatedAt),
-                          userId: Value(state.listOfProducts?[index].userId),
-                          count: const Value(1),
-                        );
-                        ProductTableHelper().addProduct(product);
+                        context.read<CartBloc>().add(CartEvent.addCart(productResponse: state.listOfProducts![index]));
                       });
                 });
           }

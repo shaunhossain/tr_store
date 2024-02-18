@@ -14,11 +14,11 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'core/endpoints/api_endpoints.dart' as _i3;
 import 'data/api_service/i_product_api_service.dart' as _i5;
 import 'data/api_service/product_api_service.dart' as _i4;
-import 'data/database/helper/product_table_helper.dart' as _i7;
 import 'data/repository/product_repository.dart' as _i6;
-import 'presentation/bloc/product_bloc/product_bloc.dart' as _i8;
+import 'presentation/bloc/cart_bloc/cart_bloc.dart' as _i8;
+import 'presentation/bloc/product_bloc/product_bloc.dart' as _i9;
 import 'presentation/bloc/product_details_bloc/product_details_bloc.dart'
-    as _i9;
+    as _i10;
 
 // initializes the registration of main-scope dependencies inside of GetIt
 _i1.GetIt $initGetIt(
@@ -35,10 +35,10 @@ _i1.GetIt $initGetIt(
   gh.lazySingleton<_i4.ProductApiService>(() => _i5.IProductApiService());
   gh.lazySingleton<_i6.ProductRepository>(
       () => _i6.IProductRepository(gh<_i4.ProductApiService>()));
-  gh.singleton<_i7.ProductTableHelper>(_i7.ProductTableHelper());
-  gh.factory<_i8.ProductBloc>(
-      () => _i8.ProductBloc(gh<_i6.ProductRepository>()));
-  gh.factory<_i9.ProductDetailsBloc>(
-      () => _i9.ProductDetailsBloc(gh<_i6.ProductRepository>()));
+  gh.factory<_i8.CartBloc>(() => _i8.CartBloc(gh<_i6.ProductRepository>()));
+  gh.factory<_i9.ProductBloc>(
+      () => _i9.ProductBloc(gh<_i6.ProductRepository>()));
+  gh.factory<_i10.ProductDetailsBloc>(
+      () => _i10.ProductDetailsBloc(gh<_i6.ProductRepository>()));
   return getIt;
 }
