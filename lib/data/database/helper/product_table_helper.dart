@@ -4,9 +4,8 @@ import 'package:tr_store/data/database/product_database.dart';
 
 @Singleton()
 class ProductTableHelper {
-
   Future<int> addProduct(ProductCompanion entry) async {
-    return await productDatabase.into(productDatabase.product).insert(entry);
+    return await productDatabase.into(productDatabase.product).insertOnConflictUpdate(entry);
   }
 
   Future<void> getAllProducts() async {

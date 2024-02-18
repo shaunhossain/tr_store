@@ -79,7 +79,7 @@ class ProductItemView extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: addCart,
                     icon: const Icon(Icons.add),
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
