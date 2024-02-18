@@ -44,6 +44,7 @@ mixin _$ProductResponse {
   String? get updatedAt => throw _privateConstructorUsedError;
   @JsonKey(name: "userId")
   int? get userId => throw _privateConstructorUsedError;
+  int? get count => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -69,7 +70,8 @@ abstract class $ProductResponseCopyWith<$Res> {
       @JsonKey(name: "category") String? category,
       @JsonKey(name: "publishedAt") String? publishedAt,
       @JsonKey(name: "updatedAt") String? updatedAt,
-      @JsonKey(name: "userId") int? userId});
+      @JsonKey(name: "userId") int? userId,
+      int? count});
 }
 
 /// @nodoc
@@ -97,6 +99,7 @@ class _$ProductResponseCopyWithImpl<$Res, $Val extends ProductResponse>
     Object? publishedAt = freezed,
     Object? updatedAt = freezed,
     Object? userId = freezed,
+    Object? count = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -147,6 +150,10 @@ class _$ProductResponseCopyWithImpl<$Res, $Val extends ProductResponse>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int?,
+      count: freezed == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -171,7 +178,8 @@ abstract class _$$ProductResponseImplCopyWith<$Res>
       @JsonKey(name: "category") String? category,
       @JsonKey(name: "publishedAt") String? publishedAt,
       @JsonKey(name: "updatedAt") String? updatedAt,
-      @JsonKey(name: "userId") int? userId});
+      @JsonKey(name: "userId") int? userId,
+      int? count});
 }
 
 /// @nodoc
@@ -197,6 +205,7 @@ class __$$ProductResponseImplCopyWithImpl<$Res>
     Object? publishedAt = freezed,
     Object? updatedAt = freezed,
     Object? userId = freezed,
+    Object? count = freezed,
   }) {
     return _then(_$ProductResponseImpl(
       id: freezed == id
@@ -247,6 +256,10 @@ class __$$ProductResponseImplCopyWithImpl<$Res>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int?,
+      count: freezed == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -266,7 +279,8 @@ class _$ProductResponseImpl implements _ProductResponse {
       @JsonKey(name: "category") this.category,
       @JsonKey(name: "publishedAt") this.publishedAt,
       @JsonKey(name: "updatedAt") this.updatedAt,
-      @JsonKey(name: "userId") this.userId});
+      @JsonKey(name: "userId") this.userId,
+      this.count});
 
   factory _$ProductResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductResponseImplFromJson(json);
@@ -307,10 +321,12 @@ class _$ProductResponseImpl implements _ProductResponse {
   @override
   @JsonKey(name: "userId")
   final int? userId;
+  @override
+  final int? count;
 
   @override
   String toString() {
-    return 'ProductResponse(id: $id, slug: $slug, url: $url, title: $title, content: $content, image: $image, thumbnail: $thumbnail, status: $status, category: $category, publishedAt: $publishedAt, updatedAt: $updatedAt, userId: $userId)';
+    return 'ProductResponse(id: $id, slug: $slug, url: $url, title: $title, content: $content, image: $image, thumbnail: $thumbnail, status: $status, category: $category, publishedAt: $publishedAt, updatedAt: $updatedAt, userId: $userId, count: $count)';
   }
 
   @override
@@ -333,13 +349,27 @@ class _$ProductResponseImpl implements _ProductResponse {
                 other.publishedAt == publishedAt) &&
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
-            (identical(other.userId, userId) || other.userId == userId));
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.count, count) || other.count == count));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, slug, url, title, content,
-      image, thumbnail, status, category, publishedAt, updatedAt, userId);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      slug,
+      url,
+      title,
+      content,
+      image,
+      thumbnail,
+      status,
+      category,
+      publishedAt,
+      updatedAt,
+      userId,
+      count);
 
   @JsonKey(ignore: true)
   @override
@@ -369,7 +399,8 @@ abstract class _ProductResponse implements ProductResponse {
       @JsonKey(name: "category") final String? category,
       @JsonKey(name: "publishedAt") final String? publishedAt,
       @JsonKey(name: "updatedAt") final String? updatedAt,
-      @JsonKey(name: "userId") final int? userId}) = _$ProductResponseImpl;
+      @JsonKey(name: "userId") final int? userId,
+      final int? count}) = _$ProductResponseImpl;
 
   factory _ProductResponse.fromJson(Map<String, dynamic> json) =
       _$ProductResponseImpl.fromJson;
@@ -410,6 +441,8 @@ abstract class _ProductResponse implements ProductResponse {
   @override
   @JsonKey(name: "userId")
   int? get userId;
+  @override
+  int? get count;
   @override
   @JsonKey(ignore: true)
   _$$ProductResponseImplCopyWith<_$ProductResponseImpl> get copyWith =>

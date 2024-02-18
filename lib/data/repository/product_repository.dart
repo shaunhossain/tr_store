@@ -49,7 +49,7 @@ class IProductRepository extends ProductRepository {
       publishedAt: Value(productResponse.publishedAt),
       updatedAt: Value(productResponse.updatedAt),
       userId: Value(productResponse.userId),
-      count: const Value(1),
+      count: Value(productResponse.count ?? 1),
     );
     return await productDatabase.into(productDatabase.product).insertOnConflictUpdate(product);
   }

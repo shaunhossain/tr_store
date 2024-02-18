@@ -16,7 +16,7 @@ enum CartStatus {
 class CartState with _$CartState {
   const factory CartState({
     @Default(CartStatus.initial) CartStatus status,
-    List<ProductEntity>? listOfProducts,
+    List<ProductResponse>? listOfProducts,
   }) = _CartState;
 
   factory CartState.fromJson(Map<String, dynamic> json) =>

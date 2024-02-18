@@ -327,7 +327,8 @@ CartState _$CartStateFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CartState {
   CartStatus get status => throw _privateConstructorUsedError;
-  List<ProductEntity>? get listOfProducts => throw _privateConstructorUsedError;
+  List<ProductResponse>? get listOfProducts =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -340,7 +341,7 @@ abstract class $CartStateCopyWith<$Res> {
   factory $CartStateCopyWith(CartState value, $Res Function(CartState) then) =
       _$CartStateCopyWithImpl<$Res, CartState>;
   @useResult
-  $Res call({CartStatus status, List<ProductEntity>? listOfProducts});
+  $Res call({CartStatus status, List<ProductResponse>? listOfProducts});
 }
 
 /// @nodoc
@@ -367,7 +368,7 @@ class _$CartStateCopyWithImpl<$Res, $Val extends CartState>
       listOfProducts: freezed == listOfProducts
           ? _value.listOfProducts
           : listOfProducts // ignore: cast_nullable_to_non_nullable
-              as List<ProductEntity>?,
+              as List<ProductResponse>?,
     ) as $Val);
   }
 }
@@ -380,7 +381,7 @@ abstract class _$$CartStateImplCopyWith<$Res>
       __$$CartStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({CartStatus status, List<ProductEntity>? listOfProducts});
+  $Res call({CartStatus status, List<ProductResponse>? listOfProducts});
 }
 
 /// @nodoc
@@ -405,7 +406,7 @@ class __$$CartStateImplCopyWithImpl<$Res>
       listOfProducts: freezed == listOfProducts
           ? _value._listOfProducts
           : listOfProducts // ignore: cast_nullable_to_non_nullable
-              as List<ProductEntity>?,
+              as List<ProductResponse>?,
     ));
   }
 }
@@ -415,7 +416,7 @@ class __$$CartStateImplCopyWithImpl<$Res>
 class _$CartStateImpl implements _CartState {
   const _$CartStateImpl(
       {this.status = CartStatus.initial,
-      final List<ProductEntity>? listOfProducts})
+      final List<ProductResponse>? listOfProducts})
       : _listOfProducts = listOfProducts;
 
   factory _$CartStateImpl.fromJson(Map<String, dynamic> json) =>
@@ -424,9 +425,9 @@ class _$CartStateImpl implements _CartState {
   @override
   @JsonKey()
   final CartStatus status;
-  final List<ProductEntity>? _listOfProducts;
+  final List<ProductResponse>? _listOfProducts;
   @override
-  List<ProductEntity>? get listOfProducts {
+  List<ProductResponse>? get listOfProducts {
     final value = _listOfProducts;
     if (value == null) return null;
     if (_listOfProducts is EqualUnmodifiableListView) return _listOfProducts;
@@ -471,7 +472,7 @@ class _$CartStateImpl implements _CartState {
 abstract class _CartState implements CartState {
   const factory _CartState(
       {final CartStatus status,
-      final List<ProductEntity>? listOfProducts}) = _$CartStateImpl;
+      final List<ProductResponse>? listOfProducts}) = _$CartStateImpl;
 
   factory _CartState.fromJson(Map<String, dynamic> json) =
       _$CartStateImpl.fromJson;
@@ -479,7 +480,7 @@ abstract class _CartState implements CartState {
   @override
   CartStatus get status;
   @override
-  List<ProductEntity>? get listOfProducts;
+  List<ProductResponse>? get listOfProducts;
   @override
   @JsonKey(ignore: true)
   _$$CartStateImplCopyWith<_$CartStateImpl> get copyWith =>

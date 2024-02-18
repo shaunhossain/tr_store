@@ -11,7 +11,7 @@ _$CartStateImpl _$$CartStateImplFromJson(Map<String, dynamic> json) =>
       status: $enumDecodeNullable(_$CartStatusEnumMap, json['status']) ??
           CartStatus.initial,
       listOfProducts: (json['listOfProducts'] as List<dynamic>?)
-          ?.map((e) => ProductEntity.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ProductResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

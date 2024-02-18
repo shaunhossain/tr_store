@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tr_store/core/styles.dart';
 import 'package:tr_store/domain/product_response/product_response.dart';
+import 'package:tr_store/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:tr_store/presentation/bloc/product_details_bloc/product_details_bloc.dart';
 import 'package:tr_store/presentation/navigation/page_name.dart';
 import 'package:tr_store/presentation/ui/widgets/loading_indicator.dart';
@@ -156,7 +157,11 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         ),
                       ),
                       ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.read<CartBloc>().add(CartEvent.addCart(
+                                productResponse: state.productResponse!
+                                    .copyWith(count: productCount)));
+                          },
                           child: Text(
                             "Buy Now",
                             style: ibmPlexSansBMStyle(Colors.white),

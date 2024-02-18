@@ -24,7 +24,12 @@ class _CartPageState extends State<CartPage> {
           return ListView.builder(
               itemCount: state.listOfProducts?.length,
               itemBuilder: (context, index) {
-                return Text(state.listOfProducts?[index].title ?? "");
+                return Column(
+                  children: [
+                    Text(state.listOfProducts?[index].title ?? ""),
+                    Text("${state.listOfProducts?[index].count ?? 0}"),
+                  ],
+                );
               });
         }
         return const SizedBox();

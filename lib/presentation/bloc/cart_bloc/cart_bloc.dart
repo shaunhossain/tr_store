@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:tr_store/data/database/entity/product_entity.dart';
 import 'package:tr_store/data/repository/product_repository.dart';
 import 'package:tr_store/domain/product_response/product_response.dart';
 
@@ -19,7 +18,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       await event.map(productList: (_ProductList req) async {
         emit(state.copyWith(status: CartStatus.loading));
         final result = await repository.getAllCartProducts();
-        var listOfProductEntity = result.map((element) => ProductEntity(
+        var listOfProductEntity = result.map((element) => ProductResponse(
           id: element.id,
           slug: element.slug,
           title: element.title,

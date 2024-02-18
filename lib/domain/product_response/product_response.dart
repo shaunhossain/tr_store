@@ -37,6 +37,7 @@ class ProductResponse with _$ProductResponse {
     String? updatedAt,
     @JsonKey(name: "userId")
     int? userId,
+    int? count,
   }) = _ProductResponse;
 
   factory ProductResponse.fromJson(Map<String, dynamic> json) => _$ProductResponseFromJson(json);

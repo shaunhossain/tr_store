@@ -21,6 +21,7 @@ _$ProductResponseImpl _$$ProductResponseImplFromJson(
       publishedAt: json['publishedAt'] as String?,
       updatedAt: json['updatedAt'] as String?,
       userId: json['userId'] as int?,
+      count: json['count'] as int?,
     );
 
 Map<String, dynamic> _$$ProductResponseImplToJson(
@@ -38,4 +39,5 @@ Map<String, dynamic> _$$ProductResponseImplToJson(
       'publishedAt': instance.publishedAt,
       'updatedAt': instance.updatedAt,
       'userId': instance.userId,
+      'count': instance.count,
     };
