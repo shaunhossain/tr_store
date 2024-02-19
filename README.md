@@ -1,16 +1,22 @@
 # tr_store
 
-A new Flutter project.
+## Generate Code
 
-## Getting Started
+If any auto-generated class file is missing just run the following command
 
-This project is a starting point for a Flutter application.
+```
+flutter clean
+flutter pub get
+flutter pub run build_runner build --delete-conflicting-outputs
+```
 
-A few resources to get you started if this is your first Flutter project:
+## Architecture
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+we follow an architecture that has four layers.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Data layer:** This layer is the one in charge of interacting with APIs.
+- **Domain layer:** This is the one in charge of transforming the data that comes from the data layer.
+  And finally, we want to manage the state of that data and present it on our user interface, that’s why we split the presentation layer in two:
+
+- **Business logic layer:** This layer manages the state (usually using flutter_bloc).
+- **Presentation layer:** Renders UI components based on state.
