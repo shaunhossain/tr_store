@@ -17,6 +17,8 @@ abstract class ProductRepository {
   Future<Either<ErrorResponse, ProductResponse>> getProductDetails(
       {required int postId});
   Future<int> addProduct({required ProductResponse productResponse});
+  Future<void> updateProduct({required ProductResponse productResponse});
+  Future<void> deleteProduct({required ProductResponse productResponse});
 
   Future<List<ProductData>> getAllCartProducts();
 }
@@ -31,7 +33,8 @@ class IProductRepository extends ProductRepository {
   }
 
   @override
-  Future<Either<ErrorResponse, ProductResponse>> getProductDetails({required int postId}) {
+  Future<Either<ErrorResponse, ProductResponse>> getProductDetails(
+      {required int postId}) {
     return productApiService.getProductDetails(postId: postId);
   }
 
@@ -51,12 +54,40 @@ class IProductRepository extends ProductRepository {
       userId: Value(productResponse.userId),
       count: Value(productResponse.count ?? 1),
     );
-    return await productDatabase.into(productDatabase.product).insertOnConflictUpdate(product);
+    return await productDatabase
+        .into(productDatabase.product)
+        .insertOnConflictUpdate(product);
   }
 
   @override
   Future<List<ProductData>> getAllCartProducts() async {
-    List<ProductData> allItems = await productDatabase.select(productDatabase.product).get();
+    List<ProductData> allItems =
+        await productDatabase.select(productDatabase.product).get();
     return allItems;
+  }
+
+  @override
+  Future<void> deleteProduct({required ProductResponse productResponse}) async {
+    await (productDatabase.product
+        .deleteWhere((t) => t.id.equals(productResponse.id ?? 0)));
+  }
+
+  @override
+  Future<void> updateProduct({required ProductResponse productResponse}) async {
+    var product = ProductData(
+      id: productResponse.id ?? 0,
+      count: productResponse.count,
+      slug: productResponse.slug,
+      title: productResponse.title,
+      content: productResponse.content,
+      image: productResponse.image,
+      thumbnail: productResponse.thumbnail,
+      status: productResponse.status,
+      category: productResponse.category,
+      publishedAt: productResponse.publishedAt,
+      updatedAt: productResponse.updatedAt,
+      userId: productResponse.userId,
+    );
+    await (productDatabase.product.update().replace(product));
   }
 }
