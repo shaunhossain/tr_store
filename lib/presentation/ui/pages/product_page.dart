@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:tr_store/presentation/bloc/cart_bloc/cart_bloc.dart';
 import 'package:tr_store/presentation/bloc/product_bloc/product_bloc.dart';
 import 'package:tr_store/presentation/navigation/page_name.dart';
 import 'package:tr_store/presentation/ui/widgets/loading_indicator.dart';
 import 'package:tr_store/presentation/ui/widgets/product_item_view.dart';
+import 'package:tr_store/presentation/ui/widgets/shimmer_effect/product_shimmer_view.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key});
@@ -39,7 +41,21 @@ class _ProductPageState extends State<ProductPage> {
         child:
             BlocBuilder<ProductBloc, ProductState>(builder: (context, state) {
           if (state.status == ProductStatus.loading) {
-            return const LoadingIndicator();
+            return GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.60,
+                    crossAxisSpacing: 30,
+                    mainAxisSpacing: 30),
+                itemCount: 9,
+                itemBuilder: (context, index) {
+                  return Shimmer.fromColors(
+                    baseColor: Colors.grey.shade300,
+                    highlightColor: Colors.grey.shade100,
+                    enabled: true,
+                    child: const ProductShimmerView(),
+                  );
+                });
           }
           if (state.status == ProductStatus.success) {
             return GridView.builder(
@@ -60,7 +76,8 @@ class _ProductPageState extends State<ProductPage> {
                       slug: state.listOfProducts?[index].slug ?? "",
                       id: "${state.listOfProducts?[index].id ?? ""}",
                       addCart: () {
-                        context.read<CartBloc>().add(CartEvent.addCart(productResponse: state.listOfProducts![index]));
+                        context.read<CartBloc>().add(CartEvent.addCart(
+                            productResponse: state.listOfProducts![index]));
                       });
                 });
           }
